@@ -1,7 +1,6 @@
 .home-background{
     position: relative;
     height: 65vh;
-    background-image: url("https://image.api.playstation.com/vulcan/img/rnd/202009/2919/KpFO3I0iQCym2X58b43Avg8L.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -45,4 +44,13 @@
 .home-banner-subtitle{
    
     text-align: center;
+}
+
+.home-carrousel{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 65%;
+
 }
