@@ -19,6 +19,8 @@ const Home = () => {
     const items = gamesCarrousel.map(image => {
         return (<img className='carrousel-it' src={image} height={100} width={150} />)
     })
+
+
     return (
         <div>
             <div className='home-background' style={{
@@ -34,11 +36,20 @@ const Home = () => {
                         <p className="home-banner-subtitle">Create your own videogame backlog, register your own experience, rate and comment your favourite videogames.</p>
                     </div>
                     <div className='container home-carrousel'>
-                        <AliceCarousel mouseTracking infinite autoPlayInterval={1000}
-                            animationDuration={1500} disableDotsControls
+                        <AliceCarousel  infinite autoPlayInterval={400}
+                            animationDuration={20000} disableDotsControls
                             responsive={responsive} autoPlay
-                            disableButtonsControls items={items}
-                            utoPlayDirection='rtl' />
+                            disableButtonsControls items={items.slice(0,19)}
+                            autoPlayDirection='rtl'
+                            animationEasingFunction='linear'  />
+                    </div>
+                    <div className='container home-carrousel'>
+                        <AliceCarousel infinite autoPlayInterval={400}
+                            animationDuration={5000} disableDotsControls
+                            responsive={responsive} autoPlay
+                            disableButtonsControls items={items.slice(19,40)}
+                            autoPlayDirection='ltr'
+                            animationEasingFunction='linear' />
                     </div>
                 </div>
             </div>

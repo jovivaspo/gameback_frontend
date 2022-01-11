@@ -14,7 +14,7 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-           <Link className='nav-link' to='/'>Home</Link>
+           <Link className='nav-link' to='/'><img src={process.env.PUBLIC_URL + 'gameback.png'} height={100}/></Link>
           </Nav>
           <Nav>
             <ModalSign/>
