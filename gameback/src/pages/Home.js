@@ -8,6 +8,7 @@ import AliceCarousel from 'react-alice-carousel';
 const Home = () => {
 
     const { imageBackground, gamesCarrousel } = useGames()
+
     const responsive = {
         0: { items: 3 },
         512: { items: 8 }
@@ -15,8 +16,8 @@ const Home = () => {
 
     console.log(imageBackground, gamesCarrousel)
 
-    const items = gamesCarrousel.map(image =>{
-        return(<img className='carrousel-it' src={image} height={100} width={150}/>)
+    const items = gamesCarrousel.map(image => {
+        return (<img className='carrousel-it' src={image} height={100} width={150} />)
     })
     return (
         <div>
@@ -27,16 +28,17 @@ const Home = () => {
                 <div className="home-main">
                     <h1 className="home-title">Game Backlog</h1>
                     <p>For videogame lovers</p>
-                    <Button variant="dark" size="lg">Sign Up</Button>
                 </div>
                 <div className='home-banner'>
                     <div className="home-banner-text">  <h2 className='home-banner-title'>GameBack</h2>
                         <p className="home-banner-subtitle">Create your own videogame backlog, register your own experience, rate and comment your favourite videogames.</p>
                     </div>
                     <div className='container home-carrousel'>
-                        <AliceCarousel mouseTracking infinite autoPlayInterval={1000} animationDuration={1500}
-                            disableDotsControls responsive={responsive} autoPlay disableButtonsControls items={items} autoPlayDirection='rtl' />
-                           
+                        <AliceCarousel mouseTracking infinite autoPlayInterval={1000}
+                            animationDuration={1500} disableDotsControls
+                            responsive={responsive} autoPlay
+                            disableButtonsControls items={items}
+                            utoPlayDirection='rtl' />
                     </div>
                 </div>
             </div>
