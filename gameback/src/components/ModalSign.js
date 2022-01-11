@@ -6,7 +6,7 @@ function ModalSign() {
 
 
   const [modalShow, setModalShow] = useState(false)
-  const [modalBody, setModalBody] = useState('2')
+  const [modalBody, setModalBody] = useState('signUp')
 
   const handlerSelect= (eventKey)=>{
     console.log(eventKey)
@@ -32,15 +32,15 @@ function ModalSign() {
             onSelect={handlerSelect}
             >
               <Nav.Item>
-                <Nav.Link eventKey='1' className='bg-dark text-white'>Sign In</Nav.Link>
+                <Nav.Link eventKey='signIn' className='bg-dark text-white'>Sign In</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="2" className='bg-dark text-white'>Sign Up</Nav.Link>
+                <Nav.Link eventKey="signUp" className='bg-dark text-white'>Sign Up</Nav.Link>
               </Nav.Item>
             </Nav>
         </Modal.Header>
         <Modal.Body className='bg-dark text-white border border-white'>
-         {modalBody==='2'? <FormSign/> : <h3>SignIn</h3> }
+         <FormSign modalBody={modalBody}/>
         </Modal.Body>
       </Modal>
     </>
