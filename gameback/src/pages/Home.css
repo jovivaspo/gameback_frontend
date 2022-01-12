@@ -41,7 +41,7 @@
     height: 400px;
     width: 100%;
     background: rgb(6,6,6);
-    background: linear-gradient(180deg, rgba(6,6,6,1) 0%, rgba(33,37,41,1) 66%, rgba(33,37,41,1) 100%);
+    background: linear-gradient(180deg, rgba(6,6,6,1) 0%, rgba(33,37,41,1) 45%, rgba(33,37,41,1) 100%);
     color:white
 }
 

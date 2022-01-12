@@ -1,36 +1,10 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { useForms } from '../useHooks/useForms'
 
 const FormSign = ({ modalBody }) => {
-  const initialForm = {
-    name: '',
-    email: '',
-    password: '',
-    passwordConfirm: ''
-  }
-  const [form, setForm] = useState(initialForm)
 
-  const handlerChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-  }
-
-  const handlerSubmit = (e) => {
-    e.preventDefault()
-    if(modalBody==='signUp'){
-      if (form.password !== form.passwordConfirm) {
-        alert('Passwords does not match')
-        return false
-      }
-      alert('Welcome, sign up!')
-      setForm(initialForm)
-    }else{
-      alert('Hi, sign in!')
-      setForm(initialForm)
-    }
-    
-
-  }
-
+  const {form, handlerSubmit, handlerChange} = useForms({modalBody})
   console.log(form)
   console.log(modalBody)
 

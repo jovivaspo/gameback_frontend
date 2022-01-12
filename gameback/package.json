@@ -2,7 +2,7 @@
   "name": "gameback",
   "version": "0.1.0",
   "private": true,
-  "home": "https://jovivaspo.github.io/gameback",
+  "home": "https://jovivaspo.github.io/gameback_frontend",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",

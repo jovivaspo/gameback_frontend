@@ -27,12 +27,12 @@ export const helpHttp= () =>{
 
         /*Realizamos el fetch*/
         return fetch(endpoint,options)
-        .then(res => res.ok? res.json() : Promise.reject({
-            err:true,
-            status:res.status || '00',
-            statusText: res.statusText || 'Something is wrong',
-        }))
-        .catch(error=>error)
+        .then(res =>console.log(res) )
+        .catch(error=>error.response.data.message)
+            /*err:true,
+            status:error.status,
+            statusText: error.statusText,
+            message: error.res.data.message*/
     }
 
     const get = (url,options = {}) =>  customFetch(url,options)
