@@ -7,7 +7,7 @@ function App() {
     <Router>
       <NavBar/>
         <Routes>
-          <Route path='/gameback_frontend/' element={<Home/>}/>
+          <Route path='/' element={<Home/>}/>
         </Routes>
     </Router>
   );
