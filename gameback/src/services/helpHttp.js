@@ -27,12 +27,9 @@ export const helpHttp= () =>{
 
         /*Realizamos el fetch*/
         return fetch(endpoint,options)
-        .then(res =>console.log(res) )
-        .catch(error=>error.response.data.message)
-            /*err:true,
-            status:error.status,
-            statusText: error.statusText,
-            message: error.res.data.message*/
+        .then(res =>res.json())
+        .then(json=>json)
+        .catch(err=>console.log(err))
     }
 
     const get = (url,options = {}) =>  customFetch(url,options)
