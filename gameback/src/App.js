@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import NavBar from './components/NavBar';
 function App() {
   return (
-    <Router>
+    <Router basename='/gameback_frontend'>
       <NavBar/>
         <Routes>
           <Route path='/' element={<Home/>}/>
