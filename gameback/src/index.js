@@ -4,11 +4,15 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import "react-alice-carousel/lib/alice-carousel.css"
+import store from './store';
+import {Provider} from 'react-redux'
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { helpHttp } from '../services/helpHttp'
+import {useDispatch} from 'react-redux'
+import {sign} from '../actions/userActions'
 
 function useForms({ modalBody }) {
   console.log(modalBody)
@@ -9,6 +11,7 @@ function useForms({ modalBody }) {
     password: '',
     passwordConfirm: ''
   }
+  const dispatch = useDispatch()
   const [form, setForm] = useState(initialForm)
   const [error, setError] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -42,8 +45,11 @@ function useForms({ modalBody }) {
           alert(res.error)
         }
         else {
-          setSuccess(`Welcome to GameBack ${res.email}`)
-          alert(`Welcome to GameBack ${res.email}`)
+          const {id,email,token} = res
+          dispatch(sign({id,email,token}))
+          localStorage.setItem('userInfo',JSON.stringify({id,email,token}))
+          setSuccess(`Welcome to GameBack ${email}`)
+          alert(`Welcome to GameBack ${email}`)
           setForm(initialForm)
         }
       })
@@ -60,12 +66,14 @@ function useForms({ modalBody }) {
           alert(res.error)
         }
         else {
-          setSuccess(`Sign In ${res.email}`)
-          alert(`Sign In ${res.email}`)
+          const {id,email,token} = res
+          dispatch(sign(id,email,token))
+          localStorage.setItem('userInfo',JSON.stringify({id,email,token}))
+          setSuccess(`Sign In ${email}`)
+          alert(`Sign In ${email}`)
           setForm(initialForm)
         }
       })
-      setForm(initialForm)
     }
 
 

@@ -14,7 +14,7 @@ const Home = () => {
         512: { items: 8 }
     }
 
-    console.log(imageBackground, gamesCarrousel)
+    //console.log(imageBackground, gamesCarrousel)
 
     const items = gamesCarrousel.map(image => {
         return (<img className='carrousel-it' src={image} height={100} width={150} />)

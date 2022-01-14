@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useForms } from '../useHooks/useForms'
+import {useSelector} from 'react-redux'
 
 const FormSign = ({ modalBody }) => {
-
+  const user = useSelector(state=>state.user)
+  console.log(user)
   const {form, handlerSubmit, handlerChange} = useForms({modalBody})
   console.log(form)
   console.log(modalBody)
