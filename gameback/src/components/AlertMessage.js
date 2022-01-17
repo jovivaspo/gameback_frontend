@@ -6,7 +6,7 @@ import './Alert.css'
 const AlertMessage = ({alert}) => {
     const {setAlert, initialAlert} = useContext(alertContext)
     const [show,setShow] = useState(true)
-    console.log('Alerta es:', alert)
+   // console.log('Alerta es:', alert)
 
  useEffect(() => {
 

@@ -5,7 +5,7 @@ import {sign} from '../actions/userActions'
 import alertContext from '../contexts/alertContext'
 
 function useForms({ modalBody }) {
-  console.log(modalBody)
+ // console.log(modalBody)
   const initialForm = {
     name: '',
     email: '',
@@ -27,6 +27,7 @@ function useForms({ modalBody }) {
       setAlert({error:true, message:'Password with less than 6 elements'})
       return false
     }
+    //////////SIGN UP//////////////////
     if (modalBody === 'signUp') {
       if (form.password !== form.passwordConfirm) {
         setAlert({error:true, message:'Passwords does not match'})
@@ -53,6 +54,7 @@ function useForms({ modalBody }) {
       })
 
     } else {
+      //////////lOGIN//////////////////
       const {email,password} = form
       helpHttp().post('http://localhost:8000/api/users/login',{
         headers:{"Content-Type": "application/json"},

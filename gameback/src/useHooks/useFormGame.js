@@ -23,10 +23,10 @@ const useFormGame =()=>{
     const handleSubmit = (e) =>{
         e.preventDefault()
         if(!form.name){
-            setAlert({error:true, message:'You must select a game'})
+            setAlert({error:true, message:'You Must Select A Game'})
             return false
         }
-        setAlert({success:true, message:'Videogame Saved'})
+        setAlert({success:true, message:'Videogame Saved, Add Another One!'})
        setForm(initialForm)
        setGame(null)
     }

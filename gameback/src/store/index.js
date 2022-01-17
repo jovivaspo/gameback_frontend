@@ -4,7 +4,11 @@ import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 
 const userLocalStorage = localStorage.getItem('userInfo')? JSON.parse(localStorage.getItem('userInfo')) : null
-const initialState = {user:{userInfo: userLocalStorage}}
+const initialState = {
+    user:{userInfo: userLocalStorage},
+    games:{gameUser:null}
+}
+
 const middleware = [thunk]
 
 const store = createStore(
