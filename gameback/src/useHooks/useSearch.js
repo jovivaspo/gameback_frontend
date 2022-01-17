@@ -9,12 +9,12 @@ const useSearch = () =>{
     const handleSearch = (e) =>{
         helpHttp().get(`${SEARCH}${e.target.value}`)
         .then(res=>{
-            console.log(res)
+           
             setSearch(res.results)
         })
     }
 
-    return {search,handleSearch}
+    return {search,  handleSearch}
 }
 
 export {useSearch}

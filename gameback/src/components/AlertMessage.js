@@ -23,7 +23,7 @@ const AlertMessage = ({alert}) => {
 
     return (
       <>
-        {alert && <Alert className='alert' show={show} variant={alert.error? 'danger' : 'success'}>{alert.message}</Alert> } 
+        {alert && <Alert className='alert' show={show} variant={alert.error? 'dark' : 'primary'}>{alert.message}</Alert> } 
       </>
    
     )

@@ -1,13 +1,16 @@
 
 import { Modal, Button } from 'react-bootstrap'
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import FormGame from './FormGame';
+import alertContext from '../contexts/alertContext';
+import AlertMessage from './AlertMessage';
 
 
 function ModalGame() {
 
 
   const [modalShow, setModalShow] = useState(false)
+  const {alert} = useContext(alertContext)
 
   
   return (
@@ -27,7 +30,8 @@ function ModalGame() {
           <FormGame/>
         </Modal.Body>
         <Modal.Footer className='bg-dark text-white border border-white'>
-         <Button variant='outline-light'>Save</Button>
+          <AlertMessage alert={alert}/>
+         <Button variant='outline-light' onClick={()=>setModalShow(false)}>Close</Button>
         </Modal.Footer>
       </Modal>
     </>
