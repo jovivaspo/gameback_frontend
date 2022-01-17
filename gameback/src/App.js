@@ -5,8 +5,11 @@ import Backlog from './pages/Backlog';
 import NavBar from './components/NavBar';
 import { useSelector } from 'react-redux'
 
+
+
 function App() {
   const user = useSelector(state => state.user.userInfo)
+
 
   return (
     <Router>
@@ -15,7 +18,6 @@ function App() {
       {user && (<Routes>
         <Route path='/' element={<Backlog/>}/>
       </Routes>)}
-
     </Router>
   );
 }

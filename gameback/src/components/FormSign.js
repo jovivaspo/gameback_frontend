@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useForms } from '../useHooks/useForms'
 import {useSelector} from 'react-redux'
+import AlertMessage from './AlertMessage'
+import alertContext from '../contexts/alertContext'
+
 
 const FormSign = ({ modalBody }) => {
   const user = useSelector(state=>state.user)
+  const {alert} = useContext(alertContext)
   console.log(user)
   const {form, handlerSubmit, handlerChange} = useForms({modalBody})
   console.log(form)
@@ -31,7 +35,7 @@ const FormSign = ({ modalBody }) => {
       <Form.Group className="mb-3" controlId="formGroupPassword">
         <Button type='submit' variant='outline-light'>Submit</Button>
       </Form.Group>
-
+      <AlertMessage alert={alert}/>
     </Form>
   )
 }

@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { helpHttp } from '../services/helpHttp'
 import {useDispatch} from 'react-redux'
 import {sign} from '../actions/userActions'
+import alertContext from '../contexts/alertContext'
 
 function useForms({ modalBody }) {
   console.log(modalBody)
@@ -13,8 +14,7 @@ function useForms({ modalBody }) {
   }
   const dispatch = useDispatch()
   const [form, setForm] = useState(initialForm)
-  const [error, setError] = useState(false)
-  const [success, setSuccess] = useState(false)
+  const {setAlert} = useContext(alertContext)
 
   const handlerChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -24,12 +24,12 @@ function useForms({ modalBody }) {
     e.preventDefault()
     
     if (form.password.length < 6) {
-      alert('Password with less than 6 elements')
+      setAlert({error:true, message:'Password with less than 6 elements'})
       return false
     }
     if (modalBody === 'signUp') {
       if (form.password !== form.passwordConfirm) {
-        alert('Passwords does not match')
+        setAlert({error:true, message:'Passwords does not match'})
         return false
       }
       const { name, email, password } = form
@@ -41,15 +41,13 @@ function useForms({ modalBody }) {
       }).then(res => {
         console.log(res)
         if (res.error) {
-          setError(res.error)
-          alert(res.error)
+          setAlert({error:true, message:res.error})
         }
         else {
           const {id,email,token} = res
           dispatch(sign({id,email,token}))
           localStorage.setItem('userInfo',JSON.stringify({id,email,token}))
-          setSuccess(`Welcome to GameBack ${email}`)
-          alert(`Welcome to GameBack ${email}`)
+          setAlert({success:true, message:`Welcome to GameBack ${email}`})
           setForm(initialForm)
         }
       })
@@ -62,15 +60,13 @@ function useForms({ modalBody }) {
       })
       .then(res=>{
         if (res.error) {
-          setError(res.error)
-          alert(res.error)
+          setAlert({error:true, message:res.error})
         }
         else {
           const {id,email,token} = res
           dispatch(sign(id,email,token))
           localStorage.setItem('userInfo',JSON.stringify({id,email,token}))
-          setSuccess(`Sign In ${email}`)
-          alert(`Sign In ${email}`)
+          setAlert({success:true, message:`Sign In ${email}`})
           setForm(initialForm)
         }
       })
@@ -79,7 +75,7 @@ function useForms({ modalBody }) {
 
   }
 
-  return { form, handlerChange, handlerSubmit, error, success }
+  return { form, handlerChange, handlerSubmit }
 }
 
 export { useForms }

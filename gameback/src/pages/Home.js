@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Button } from 'react-bootstrap'
 import { useGames } from '../useHooks/useGames'
 import './Home.css'
 import AliceCarousel from 'react-alice-carousel';
 
 
+
 const Home = () => {
+
 
     const { imageBackground, gamesCarrousel } = useGames()
 
@@ -27,6 +29,7 @@ const Home = () => {
                 backgroundImage: `url(${imageBackground})`
             }}>
                 <div className="home-gradient"></div>
+               
                 <div className="home-main">
                     <h1 className="home-title">Game Backlog</h1>
                     <p>For videogame lovers</p>

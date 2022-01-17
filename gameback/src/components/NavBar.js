@@ -1,19 +1,22 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import { Navbar, Container, Nav, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './NavBar.css'
 import ModalSign from './ModalSign'
 import { useSelector, useDispatch } from 'react-redux'
 import {logout} from '../actions/userActions'
+import alertContext from '../contexts/alertContext'
 
 
 const NavBar = () => {
 
   const user = useSelector(state => state.user.userInfo)
+  const {setAlert, initialAlert} = useContext(alertContext)
   const dispatch = useDispatch()
   const handleLogOut = () =>{
     dispatch(logout())
     localStorage.removeItem('userInfo')
+    setAlert(initialAlert)
   }
 
   return (
