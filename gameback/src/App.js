@@ -12,13 +12,16 @@ function App() {
 
 
   return (
-    <Router>
-      <NavBar />
-      {!user && <Home/>}
-      {user && (<Routes>
-        <Route path='/' element={<Backlog/>}/>
-      </Routes>)}
-    </Router>
+    <div className="app">
+      <Router>
+        <NavBar />
+        {!user && <Home />}
+        {user && (<Routes>
+          <Route path='/' element={<Backlog />} />
+        </Routes>)}
+      </Router>
+    </div>
+
   );
 }
 

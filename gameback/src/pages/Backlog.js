@@ -1,41 +1,16 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
 import './Backlog.css'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import {list} from '../actions/gamesActions'
 import ModalGame from '../components/ModalGame'
-import { helpHttp } from '../services/helpHttp'
 import  Card  from '../components/Card'
+import { useListGames } from '../useHooks/useListGames'
 
-/*const reorder =(list,startIndex, endIndex)=>{
-    const result = [...list]
-    const [removed] = result.splice(startIndex, 1)
-    result.splice(endIndex, 0 , removed)
-    return result
-}*/
 
 const columnCategory = ["Not Status", "Not Started", "In Progress", "Completed", "Abandoned"]
 
 
 const Backlog = () => {
 
-    const games = useSelector(state => state.games)
-    const {id,token} = useSelector(state=>state.user.userInfo)
-    const dispatch = useDispatch()
-
-
-   useEffect(()=>{
-        helpHttp().get('http://localhost:8000/api/videogame/list/'+ id,
-        {headers:{
-          "Authorization": `Bearer ${token}`
-        }})
-        .then(games=>{
-          dispatch(list(games))
-        })
-    },[])
-
-    console.log(games)
-
+   const {games} = useListGames()
 
     return (
         <div className='backlog-container pt-3'>
@@ -51,12 +26,12 @@ const Backlog = () => {
                                     <div className="backlog-column col-md p-2" key={index}>
                                         <h6 className={classe.toLocaleLowerCase() + ' tag'}>{category}</h6>
                                         <span className='p-1 text-secondary'>{games.gamesUser? (games.gamesUser.games[category].length) : 0}</span>
-                                        <ModalGame />
+                                        <ModalGame category={category}/>
                                         <div className='container-cards'>
                                             {(games.gamesUser && games.gamesUser.games[category].length > 0) ?
                                                 (games.gamesUser.games[category].map((el, index) => {
-                                                    console.log(el)
-                                                   return (<Card game={el} index={index} />)
+                                                   //console.log(el)
+                                                   return (<Card game={el} key={index} />)
                                                 })) :
                                                 (<></>)
                                             }

@@ -42,6 +42,9 @@ function ModalSign() {
         <Modal.Body className='bg-dark text-white border border-white'>
          <FormSign modalBody={modalBody}/>
         </Modal.Body>
+        <Modal.Footer className='bg-dark text-white border border-white'>
+          <Button variant='outline-light' onClick={()=>setModalShow(false)}>Close</Button>
+        </Modal.Footer>
       </Modal>
     </>
 

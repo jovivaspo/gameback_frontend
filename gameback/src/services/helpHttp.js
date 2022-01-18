@@ -2,7 +2,7 @@ export const helpHttp= () =>{
 
     const customFetch =  (endpoint, options) => {
 
-        console.log(endpoint)
+        //console.log(endpoint)
         /*Cabecera por defecto*/
         const defaultHeaders = {
             accept: "application/json"

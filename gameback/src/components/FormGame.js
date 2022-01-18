@@ -7,11 +7,11 @@ import { useSearch } from '../useHooks/useSearch'
 const rating = [1, 2, 3, 4, 5]
 const status = ["Not Status", "Not Started", "In Progress", "Completed", "Abandoned"]
 
-const FormGame = ({setModalShow}) => {
+const FormGame = ({category}) => {
 
     const { search, handleSearch } = useSearch()
 
-    const { form, game, handleChange, handleSubmit, handleSelectGame} = useFormGame()
+    const { form, game, handleChange, handleSubmit, handleSelectGame} = useFormGame(category)
 
 
 
