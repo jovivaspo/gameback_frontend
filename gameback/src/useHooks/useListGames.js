@@ -1,6 +1,6 @@
-import { useEffect,useContext } from 'react'
+import {useContext, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { list, changeColumnFrontend, changeOrderFrontend } from '../actions/gamesActions'
+import { list, changeColumnFrontend, changeOrderFrontend, updateBackend } from '../actions/gamesActions'
 import alertContext from '../contexts/alertContext'
 import { helpHttp } from '../services/helpHttp'
 
@@ -11,17 +11,9 @@ const useListGames = () => {
     const dispatch = useDispatch()
     const {setAlert} = useContext(alertContext)
 
-    const listGames = () => {
-        helpHttp().get('http://localhost:8000/api/videogame/list/' + id,
-            {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            })
-            .then(games => {
-                dispatch(list(games))
-            })
-    }
+     useEffect(()=>{
+        dispatch(list(id,token))
+    },[dispatch])
 
     const addGame = (form) => {
         
@@ -44,15 +36,13 @@ const useListGames = () => {
                 setAlert({error:true, message:res.error})
               }else{
                 setAlert({success:true, message:res.message})
-                listGames()
-               
+                dispatch(list(id,token))
               }
            
         })
     }
 
     const deleteGame = (e) => {
-
 
         const idGame = e.target.dataset.id
 
@@ -66,24 +56,12 @@ const useListGames = () => {
                     alert(res.error)
                 } else {
                     alert(res.message)
-                    listGames()
+                    dispatch(list(id,token))
 
                 }
             })
     }
 
-    const updateList = (source, destination, games) => {
-        console.log(id)
-        helpHttp().put('http://localhost:8000/api/videogame/updateList/' + id, {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-            body: { source, destination, games }
-
-        }).then(games=>dispatch(list(games)))
-
-    }
 
     const onDragEnd = (result) => {
 
@@ -93,23 +71,18 @@ const useListGames = () => {
 
         if (source.droppableId !== destination.droppableId) {
             console.log('!Cambiando videojuego de columna!')
-            dispatch(changeColumnFrontend(source,destination))
-            updateList(source,destination,games)
-
-
+            dispatch(changeColumnFrontend(games,source,destination))
+            dispatch(updateBackend(games,id,token,source,destination))
+          
         } else {
             console.log('!Cambiando videojuego solo de orden!')
-            dispatch(changeOrderFrontend(source,destination))
-            updateList(source,destination)
+            dispatch(changeOrderFrontend(games,source,destination))
+            dispatch(updateBackend(games,id,token,source,destination))
         }
     };
 
-    useEffect(() => {
-        console.log('recargando')
-        listGames()
-    }, [dispatch])
 
-    return { games, listGames, addGame, deleteGame, onDragEnd }
+    return { addGame, deleteGame, onDragEnd }
 }
 
 

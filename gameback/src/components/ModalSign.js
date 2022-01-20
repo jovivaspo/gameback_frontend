@@ -9,7 +9,7 @@ function ModalSign() {
   const [modalBody, setModalBody] = useState('signUp')
 
   const handlerSelect= (eventKey)=>{
-    console.log(eventKey)
+    //console.log(eventKey)
       setModalBody(eventKey)
   }
 

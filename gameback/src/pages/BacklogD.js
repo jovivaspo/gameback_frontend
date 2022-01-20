@@ -1,28 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Backlog.css'
 import ModalGame from '../components/ModalGame'
 import Card from '../components/Card'
 import { useListGames } from '../useHooks/useListGames'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import {useSelector} from 'react-redux'
 
 
 
 const BacklogD = () => {
-
-    const { games, onDragEnd } = useListGames()
-    console.log(games)
-
+    const [aside,setAside] = useState(null)
+    const { onDragEnd } = useListGames()
+    const games = useSelector(state => state.games)
+   console.log(games)
     return (
         <div className='backlog-container pt-3'>
             <div className="backlog-container-main container-lg text-white m-auto">
                 <div className="backlog-container-main-row row">
-                    <div className="backlog-container-main-sidebar col-lg-2">Soy una barra lateral</div>
-                    <div className="backlog-container-main-body col-lg-10">
+                    {aside && <div className="backlog-container-main-sidebar col-lg-2">Soy una barra lateral</div>}
+                    <div className="backlog-container-main-body col-lg-12">
                         {games.gamesUser && <DragDropContext
                             onDragEnd={result => onDragEnd(result)}
                         >
                             <div className="backlog-container-main-body-row row">
-                                {Object.entries(games.gamesUser.games).map(([status, items]) => {
+                                {Object.entries(games.gamesUser?.games).map(([status, items]) => {
                                     const classe = status.replace(/ /, '-')
                                     return (
                                         <div className="backlog-column col-md p-2" key={status}>

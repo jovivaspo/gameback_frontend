@@ -1,18 +1,17 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useForms } from '../useHooks/useForms'
-import {useSelector} from 'react-redux'
 import AlertMessage from './AlertMessage'
 import alertContext from '../contexts/alertContext'
 
 
 const FormSign = ({ modalBody }) => {
-  const user = useSelector(state=>state.user)
+
   const {alert} = useContext(alertContext)
-  console.log(user)
+  //console.log(user)
   const {form, handlerSubmit, handlerChange} = useForms({modalBody})
-  console.log(form)
-  console.log(modalBody)
+  //console.log(form)
+  //console.log(modalBody)
 
   return (
     <Form onSubmit={handlerSubmit}>

@@ -1,9 +1,8 @@
-import React, { useState, useContext } from 'react'
-import { helpHttp } from '../services/helpHttp'
-import {useDispatch, useSelector} from 'react-redux'
-import {sign} from '../actions/userActions'
+import { useState, useContext } from 'react'
+import {useDispatch} from 'react-redux'
+import {sign, login} from '../actions/userActions'
 import alertContext from '../contexts/alertContext'
-import { useListGames } from './useListGames'
+
 
 function useForms({ modalBody }) {
  // console.log(modalBody)
@@ -35,47 +34,14 @@ function useForms({ modalBody }) {
         setAlert({error:true, message:'Passwords does not match'})
         return false
       }
-      const { name, email, password } = form
-      helpHttp().post('http://localhost:8000/api/users/create', {
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: { name, email, password }
-      }).then(res => {
-        console.log(res)
-        if (res.error) {
-          setAlert({error:true, message:res.error})
-        }
-        else {
-          const {id,email,token} = res
-          dispatch(sign({id,email,token}))
-          localStorage.setItem('userInfo',JSON.stringify({id,email,token}))
-         
-          setAlert({success:true, message:`Welcome to GameBack ${email}`})
-          setForm(initialForm)
-        }
-      })
 
+      const { name, email, password } = form
+          dispatch(sign(name,email,password,setAlert, setForm, initialForm))
+          
     } else {
       //////////lOGIN//////////////////
       const {email,password} = form
-      helpHttp().post('http://localhost:8000/api/users/login',{
-        headers:{"Content-Type": "application/json"},
-        body:{email,password}
-      })
-      .then(res=>{
-        if (res.error) {
-          setAlert({error:true, message:res.error})
-        }
-        else {
-          const {id,email,token} = res
-          dispatch(sign(id,email,token))
-          
-          localStorage.setItem('userInfo',JSON.stringify({id,email,token}))
-          setAlert({success:true, message:`Sign In ${email}`})
-          setForm(initialForm)
-        }
-      })
+      dispatch(login(email,password,setAlert, setForm, initialForm))
     }
 
 
