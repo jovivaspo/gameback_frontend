@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home';
-import Backlog from './pages/Backlog';
+import BacklogD from './pages/BacklogD';
 import NavBar from './components/NavBar';
 import { useSelector } from 'react-redux'
 
@@ -17,7 +17,7 @@ function App() {
         <NavBar />
         {!user && <Home />}
         {user && (<Routes>
-          <Route path='/' element={<Backlog />} />
+          <Route path='/' element={<BacklogD />} />
         </Routes>)}
       </Router>
     </div>

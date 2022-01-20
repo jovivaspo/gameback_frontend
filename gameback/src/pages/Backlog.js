@@ -5,12 +5,14 @@ import  Card  from '../components/Card'
 import { useListGames } from '../useHooks/useListGames'
 
 
-const columnCategory = ["Not Status", "Not Started", "In Progress", "Completed", "Abandoned"]
+const columns = ["Not Status", "Not Started", "In Progress", "Completed", "Abandoned"]
 
 
 const Backlog = () => {
 
    const {games} = useListGames()
+
+   console.log(games)
 
     return (
         <div className='backlog-container pt-3'>
@@ -20,7 +22,7 @@ const Backlog = () => {
                     <div className="backlog-container-main-body col-lg-10">
                         <div className="backlog-container-main-body-row row">
 
-                            {columnCategory.map((category, index) => {
+                            {columns.map((category, index) => {
                                 const classe = category.replace(/ /, '-')
                                 return (
                                     <div className="backlog-column col-md p-2" key={index}>

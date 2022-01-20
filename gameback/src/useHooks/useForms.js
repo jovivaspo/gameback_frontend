@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react'
 import { helpHttp } from '../services/helpHttp'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {sign} from '../actions/userActions'
 import alertContext from '../contexts/alertContext'
+import { useListGames } from './useListGames'
 
 function useForms({ modalBody }) {
  // console.log(modalBody)
@@ -15,6 +16,7 @@ function useForms({ modalBody }) {
   const dispatch = useDispatch()
   const [form, setForm] = useState(initialForm)
   const {setAlert} = useContext(alertContext)
+ 
 
   const handlerChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -48,6 +50,7 @@ function useForms({ modalBody }) {
           const {id,email,token} = res
           dispatch(sign({id,email,token}))
           localStorage.setItem('userInfo',JSON.stringify({id,email,token}))
+         
           setAlert({success:true, message:`Welcome to GameBack ${email}`})
           setForm(initialForm)
         }
@@ -67,6 +70,7 @@ function useForms({ modalBody }) {
         else {
           const {id,email,token} = res
           dispatch(sign(id,email,token))
+          
           localStorage.setItem('userInfo',JSON.stringify({id,email,token}))
           setAlert({success:true, message:`Sign In ${email}`})
           setForm(initialForm)
