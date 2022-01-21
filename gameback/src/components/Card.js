@@ -18,6 +18,9 @@ const Card = ({game, position}) => {
                     <div className='col-12'>
                         <span>Rating: </span>
                         <span>{game.rating}</span>
+                        <br/>
+                        <span>Pos </span>
+                        <span>{game.position}</span>
                     </div>
                     <div className='col-12 d-flex justify-content-end'>
                         <Button variant='outline-light' size='sm' onClick={deleteGame} data-id={game.id}>Delete</Button>
