@@ -11,6 +11,7 @@ const useSearch = () =>{
         .then(res=>{
            
             setSearch(res.results)
+          
         })
     }
 

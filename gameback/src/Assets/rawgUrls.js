@@ -4,6 +4,7 @@ const URL_GAMES = `${URL_API}/games?key=${API_KEY}&page_size=40`
 const SEARCH= `${URL_GAMES}&search=`
 const URL_GAMES_TOP=`${URL_GAMES}&ordering=-rating&page_size=20`
 
+
 export {
     API_KEY,
     URL_API,

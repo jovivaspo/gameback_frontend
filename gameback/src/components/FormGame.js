@@ -15,7 +15,7 @@ const FormGame = ({category}) => {
 
 
 
-    console.log(form)
+   console.log(form)
    // console.log(game)
     return (
         <>
@@ -75,7 +75,7 @@ const FormGame = ({category}) => {
                                             <h6>{el.name}</h6>
                                             <img src={el.background_image} alt={el.name} height='90px' width='180px' />
                                             <Button size='sm' className='mt-2 mb-2'
-                                             data-name={el.name} data-img={el.background_image} 
+                                             data-name={el.name} data-img={el.background_image} data-api={el.id}
                                             variant={game===el.name? 'outline-primary' : 'outline-light'}
                                              onClick={handleSelectGame}>Select</Button>
                                         </div>

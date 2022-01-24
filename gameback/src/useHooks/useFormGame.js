@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react'
 import alertContext from '../contexts/alertContext'
-import { helpHttp } from '../services/helpHttp'
 import { useListGames } from './useListGames'
 
 
@@ -15,6 +14,7 @@ const useFormGame = (category) => {
             status: category,
             position: '',
             comment: '',
+            idApi:''
         }
     }
     const [form, setForm] = useState(initialForm)
@@ -30,7 +30,7 @@ const useFormGame = (category) => {
 
     const handleSelectGame = (e) => {
 
-        setForm({ ...form, ['name']: e.target.dataset.name, ['image']: e.target.dataset.img })
+        setForm({ ...form, ['name']: e.target.dataset.name, ['image']: e.target.dataset.img, ['idApi']:e.target.dataset.api })
         setGame(e.target.dataset.name)
     }
 

@@ -11,7 +11,8 @@ h6{
 }
 
 .tag{
-    display:inline-block
+    display:inline-block;
+    padding: 3px;
 }
 .not-tatus{
     background-color: #373C3F;

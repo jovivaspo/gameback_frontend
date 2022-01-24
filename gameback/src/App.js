@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import BacklogD from './pages/BacklogD';
 import NavBar from './components/NavBar';
 import { useSelector } from 'react-redux'
+import Videogame from './pages/Videogame';
 
 
 
@@ -18,6 +19,7 @@ function App() {
         {!user && <Home />}
         {user && (<Routes>
           <Route path='/' element={<BacklogD />} />
+          <Route path='/edit/:id' element={<Videogame/>} />
         </Routes>)}
       </Router>
     </div>

@@ -26,7 +26,7 @@ const BacklogD = () => {
                                 {Object.entries(games.gamesUser?.games).map(([status, items]) => {
                                     const classe = status.replace(/ /, '-')
                                     return (
-                                        <div className="backlog-column col-md p-2" key={status}>
+                                        <div className="backlog-column col-md p-3" key={status}>
                                             <h6 className={classe.toLocaleLowerCase() + ' tag'}>{status}</h6>
                                             <span className='p-1 text-secondary'>{games.gamesUser ? (games.gamesUser.games[status].length) : 0}</span>
                                             <ModalGame category={status} />
@@ -37,6 +37,7 @@ const BacklogD = () => {
                                                         ref={provided.innerRef}
                                                     >
                                                         {items.map((el, index) => {
+                                                            //console.log(el.id)
                                                             return (
                                                                 <Draggable key={el.id} draggableId={el.id} index={index}>
                                                                     {(provided) => {

@@ -34,7 +34,7 @@ export default function gamesReducer (state={},action){
             const {source,column} = action.payload
            
             const newState = {
-                game:{...state.gamesUser.games,
+                games:{...state.gamesUser.games,
                 [source.droppableId]:column}
             }
 

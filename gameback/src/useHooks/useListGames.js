@@ -29,6 +29,7 @@ const useListGames = () => {
                 status:form.status,
                 comment:form.comment,
                 userId:id,
+                idApi:form.idApi,
                 position:games.gamesUser.games[form.status].length
             }
         }).then(res=>{
@@ -40,6 +41,32 @@ const useListGames = () => {
               }
            
         })
+    }
+
+    const editGame = (form,id) => {
+ 
+            const originalPosition = games.gamesUser.games[form.status].find(el=>el.id===id)
+
+         
+             helpHttp().put('http://localhost:8000/api/videogame/update/' + id,{
+                headers:{
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body:{
+                    rating:form.rating,
+                    status:form.status,
+                    comment:form.comment,
+                    position:originalPosition? originalPosition.position : games.gamesUser.games[form.status].length
+                }}).then(res=>{
+                    if (res.error) {
+                        alert(res.error)
+                      }else{
+                        alert(res.message)
+                      
+                      }
+                })    
+
     }
 
     const deleteGame = (e) => {
@@ -65,6 +92,8 @@ const useListGames = () => {
 
     const onDragEnd = (result) => {
 
+        console.log('Moviendo', result)
+
         if (!result.destination) return;
 
         const { source, destination } = result;
@@ -82,7 +111,7 @@ const useListGames = () => {
     };
 
 
-    return { addGame, deleteGame, onDragEnd }
+    return { addGame, deleteGame, onDragEnd, editGame }
 }
 
 
