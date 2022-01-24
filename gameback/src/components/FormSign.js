@@ -34,7 +34,7 @@ const FormSign = ({ modalBody }) => {
       <Form.Group className="mb-3" controlId="formGroupPassword">
         <Button type='submit' variant='outline-light'>Submit</Button>
       </Form.Group>
-      <AlertMessage alert={alert}/>
+      <AlertMessage/>
     </Form>
   )
 }

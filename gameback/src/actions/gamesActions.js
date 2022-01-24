@@ -1,10 +1,11 @@
 import { CHANGE_COLUMN_FRONTEND, CHANGE_ORDER_FRONTEND, LIST, UPDATEBACKEND } from "../types";
 import { helpHttp } from "../services/helpHttp";
+import { URL_VIDEOGAME_LIST, URL_VIDEOGAME_UPDATELIST } from "../Assets/url_api";
 
 export const list = (id, token) => async (dispatch) => {
     try {
         console.log('Pidiendo juegos')
-        const games = await helpHttp().get('http://localhost:8000/api/videogame/list/' + id,
+        const games = await helpHttp().get(URL_VIDEOGAME_LIST + id,
             {
                 headers: {
                     "Authorization": `Bearer ${token}`
@@ -45,7 +46,7 @@ export const changeOrderFrontend = (games, source, destination) => async (dispat
 export const updateBackend = (snapgames, id, token, source,destination) => async (dispatch) => {
     try {
       
-        const games = await helpHttp().put('http://localhost:8000/api/videogame/updateList/' + id, {
+        const games = await helpHttp().put(URL_VIDEOGAME_UPDATELIST + id, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`

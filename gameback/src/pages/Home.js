@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { Button } from 'react-bootstrap'
+import React from 'react'
 import { useGames } from '../useHooks/useGames'
 import './Home.css'
 import AliceCarousel from 'react-alice-carousel';

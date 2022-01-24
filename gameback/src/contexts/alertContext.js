@@ -6,11 +6,12 @@ const AlertProvider = ({children})=>{
     const initialAlert = {
         error:false,
         success:false,
-        message:''
+        message: null
     }
     const [alert,setAlert] = useState(initialAlert)
+    const [show, setShow] = useState(false)
 
-    const data = {alert, setAlert}
+    const data = {alert, setAlert, show, setShow}
 
     return(
         <alertContext.Provider value={data}>{children}</alertContext.Provider>

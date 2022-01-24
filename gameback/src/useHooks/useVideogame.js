@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react'
 import {useSelector} from 'react-redux'
 import { useListGames } from './useListGames'
 import {useNavigate} from 'react-router-dom'
+import { URL_VIDEOGAME_GAME } from '../Assets/url_api'
 
 const useVideogame = (idGame) =>{
    
@@ -24,7 +25,7 @@ const useVideogame = (idGame) =>{
     }
 
     const getGameApi = () =>{
-      helpHttp().get('http://localhost:8000/api/videogame/game/' + id + '/' + idGame, {
+      helpHttp().get(URL_VIDEOGAME_GAME + id + '/' + idGame, {
         headers: {
             "Authorization": `Bearer ${token}`
         }

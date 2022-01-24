@@ -19,7 +19,7 @@ const useFormGame = (category) => {
     }
     const [form, setForm] = useState(initialForm)
     const [game, setGame] = useState()
-    const { setAlert } = useContext(alertContext)
+    const { setAlert, setShow } = useContext(alertContext)
     const {addGame} = useListGames()
 
 
@@ -38,7 +38,12 @@ const useFormGame = (category) => {
         e.preventDefault()
 
         if (!form.name) {
+            setShow(true)
             setAlert({ error: true, message: 'You Must Select A Game' })
+            setTimeout(()=>{
+                setShow(false)
+                setAlert({ error: false, message: null })
+            },1200)
             return false
         } else {
             addGame(form)

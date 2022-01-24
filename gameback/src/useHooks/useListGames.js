@@ -1,6 +1,7 @@
 import {useContext, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { list, changeColumnFrontend, changeOrderFrontend, updateBackend } from '../actions/gamesActions'
+import { URL_VIDEOGAME_ADD, URL_VIDEOGAME_DELETE, URL_VIDEOGAME_UPDATE } from '../Assets/url_api'
 import alertContext from '../contexts/alertContext'
 import { helpHttp } from '../services/helpHttp'
 
@@ -9,7 +10,7 @@ const useListGames = () => {
     const games = useSelector(state => state.games)
     const { id, token } = useSelector(state => state.user.userInfo)
     const dispatch = useDispatch()
-    const {setAlert} = useContext(alertContext)
+    const {setAlert, setShow} = useContext(alertContext)
 
      useEffect(()=>{
         dispatch(list(id,token))
@@ -17,7 +18,7 @@ const useListGames = () => {
 
     const addGame = (form) => {
         
-        helpHttp().post('http://localhost:8000/api/videogame/add',{
+        helpHttp().post(URL_VIDEOGAME_ADD,{
             headers:{
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
@@ -35,9 +36,21 @@ const useListGames = () => {
         }).then(res=>{
             if (res.error) {
                 setAlert({error:true, message:res.error})
+                setShow(true)
+                setTimeout(()=>{
+                    setShow(false)
+                    setAlert({ error: false, message: null })
+                },1200)
               }else{
                 setAlert({success:true, message:res.message})
-                dispatch(list(id,token))
+                setShow(true)
+                setTimeout(()=>{
+                    dispatch(list(id,token))
+                    setShow(false)
+                    setAlert({ error: false, message: null })
+                },1200)
+
+                
               }
            
         })
@@ -48,7 +61,7 @@ const useListGames = () => {
             const originalPosition = games.gamesUser.games[form.status].find(el=>el.id===id)
 
          
-             helpHttp().put('http://localhost:8000/api/videogame/update/' + id,{
+             helpHttp().put( URL_VIDEOGAME_UPDATE + id,{
                 headers:{
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
@@ -73,7 +86,7 @@ const useListGames = () => {
 
         const idGame = e.target.dataset.id
 
-        helpHttp().del('http://localhost:8000/api/videogame/delete/' + id + '/' + idGame, {
+        helpHttp().del(URL_VIDEOGAME_DELETE + id + '/' + idGame, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }

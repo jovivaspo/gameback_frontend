@@ -14,7 +14,7 @@ function useForms({ modalBody }) {
   }
   const dispatch = useDispatch()
   const [form, setForm] = useState(initialForm)
-  const {setAlert} = useContext(alertContext)
+  const {setAlert,setShow} = useContext(alertContext)
  
 
   const handlerChange = (e) => {
@@ -25,23 +25,34 @@ function useForms({ modalBody }) {
     e.preventDefault()
     
     if (form.password.length < 6) {
+      setShow(true)
       setAlert({error:true, message:'Password with less than 6 elements'})
-      return false
+      setTimeout(()=>{
+        setAlert({error: false, message: null})
+        setShow(false) 
+    },1200)
+    return false
     }
     //////////SIGN UP//////////////////
     if (modalBody === 'signUp') {
       if (form.password !== form.passwordConfirm) {
+        setShow(true)
         setAlert({error:true, message:'Passwords does not match'})
+        setTimeout(()=>{
+            setAlert({error: false, message: null})
+            setShow(false)
+        },1200)
         return false
+       
       }
 
       const { name, email, password } = form
-          dispatch(sign(name,email,password,setAlert, setForm, initialForm))
+          dispatch(sign(name,email,password,setAlert,setShow, setForm, initialForm))
           
     } else {
       //////////lOGIN//////////////////
       const {email,password} = form
-      dispatch(login(email,password,setAlert, setForm, initialForm))
+      dispatch(login(email,password,setAlert, setShow, setForm, initialForm))
     }
 
 
