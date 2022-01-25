@@ -20,9 +20,6 @@ const Card = ({ game}) => {
                     <div className='col-12'>
                         <span>Rating: </span>
                         <span>{game.rating ? `${game.rating}/5` : '-/5'}</span>
-                        <br />
-                        <span>Pos </span>
-                        <span>{game.position}</span>
                     </div>
                     <div className='col-12 d-flex justify-content-end'>
                         <Button variant='outline-light' size='sm' className='mx-1' onClick={() => navigate(`/edit/${game.id}`)}>See</Button>
