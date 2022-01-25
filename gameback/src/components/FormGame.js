@@ -15,7 +15,7 @@ const FormGame = ({category}) => {
 
 
 
-   console.log(form)
+   //console.log(form)
    // console.log(game)
     return (
         <>

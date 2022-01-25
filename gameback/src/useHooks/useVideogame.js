@@ -44,7 +44,7 @@ const useVideogame = (idGame) =>{
 
     const handleChange = (e) =>{
       setFormEdit({...formEdit,[e.target.name]:e.target.value})
-      console.log(formEdit)
+     // console.log(formEdit)
     }
 
     const handleSubmit = (e) => {

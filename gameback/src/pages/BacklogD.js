@@ -12,7 +12,7 @@ const BacklogD = () => {
     const [aside,setAside] = useState(null)
     const { onDragEnd } = useListGames()
     const games = useSelector(state => state.games)
-   console.log(games)
+  // console.log(games)
     return (
         <div className='backlog-container pt-3'>
             <div className="backlog-container-main container-lg text-white m-auto">

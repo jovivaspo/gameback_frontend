@@ -54,7 +54,7 @@ export const login = ( email, password, setAlert, setShow, setForm, initialForm)
             headers:{"Content-Type": "application/json"},
             body:{email,password}
           })
-          console.log(res)
+         // console.log(res)
           if (res.error) {
             throw res.error
         } else {

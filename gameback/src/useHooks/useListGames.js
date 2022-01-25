@@ -105,19 +105,19 @@ const useListGames = () => {
 
     const onDragEnd = (result) => {
 
-        console.log('Moviendo', result)
+      //  console.log('Moviendo', result)
 
         if (!result.destination) return;
 
         const { source, destination } = result;
 
         if (source.droppableId !== destination.droppableId) {
-            console.log('!Cambiando videojuego de columna!')
+         //   console.log('!Cambiando videojuego de columna!')
             dispatch(changeColumnFrontend(games,source,destination))
             dispatch(updateBackend(games,id,token,source,destination))
           
         } else {
-            console.log('!Cambiando videojuego solo de orden!')
+        //    console.log('!Cambiando videojuego solo de orden!')
             dispatch(changeOrderFrontend(games,source,destination))
             dispatch(updateBackend(games,id,token,source,destination))
         }

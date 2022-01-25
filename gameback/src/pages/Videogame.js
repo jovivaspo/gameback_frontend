@@ -14,8 +14,8 @@ const Videogame = () => {
   const { userVideogame, videogameApi, handleChange, handleSubmit, formEdit } = useVideogame(id)
   
 
-  console.log(userVideogame)
-  console.log(videogameApi);
+ // console.log(userVideogame)
+ // console.log(videogameApi);
 
   return (userVideogame && videogameApi && <div className="videogame-background" style={{
     backgroundImage: `url(${userVideogame.url_image})`
